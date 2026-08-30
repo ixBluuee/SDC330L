@@ -1,7 +1,7 @@
 /********************************************************************
  * Name: Elvis Melendez
  * Date: 8/29/2026
- * Assignment: SDC330L Course Project - Week 1
+ * Assignment: SDC330L Course Project - Week 3
  *
  * Purpose:
  * This class represents an individual bank customer and contains the
@@ -12,7 +12,8 @@ import java.util.ArrayList;
 
 public class Customer {
 
-    private final int customerId;
+    // Private access protects customer data from direct modification.
+    private int customerId;
     private String firstName;
     private String lastName;
     private String email;
@@ -21,6 +22,7 @@ public class Customer {
     // Composition: a Customer contains a collection of Account objects.
     private ArrayList<Account> accounts;
 
+    // Full constructor initializes all customer properties.
     public Customer(int customerId, String firstName, String lastName,
             String email, String phoneNumber) {
 
@@ -32,6 +34,18 @@ public class Customer {
         accounts = new ArrayList<Account>();
     }
 
+    // Constructor overloading: creates a customer when contact
+    // information is not available.
+    public Customer(int customerId, String firstName, String lastName) {
+        this(
+                customerId,
+                firstName,
+                lastName,
+                "Not provided",
+                "Not provided"
+        );
+    }
+
     public int getCustomerId() {
         return customerId;
     }
@@ -40,16 +54,32 @@ public class Customer {
         return firstName;
     }
 
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
     public String getLastName() {
         return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getEmail() {
         return email;
     }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
     }
 
     public ArrayList<Account> getAccounts() {

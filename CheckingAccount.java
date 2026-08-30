@@ -1,21 +1,22 @@
 /********************************************************************
  * Name: Elvis Melendez
  * Date: 8/29/2026
- * Assignment: SDC330L Course Project - Week 1
+ * Assignment: SDC330L Course Project - Week 3
  *
  * Purpose:
  * This class represents a checking account and adds an overdraft
- * limit to the information inherited from the Account class.
+ * limit to the shared Account functionality.
  ********************************************************************/
 
-// Inheritance: CheckingAccount is a derived class of Account.
 public class CheckingAccount extends Account {
 
-    private double overdraftLimit;
+    // Private access limits direct access to this class.
+    private final double overdraftLimit;
 
     public CheckingAccount(String accountNumber, double balance,
             double overdraftLimit) {
 
+        // Constructor chaining: initializes inherited account data.
         super(accountNumber, balance);
         this.overdraftLimit = overdraftLimit;
     }
@@ -24,10 +25,16 @@ public class CheckingAccount extends Account {
         return overdraftLimit;
     }
 
+    // Abstraction: provides the account type required by Account.
+    @Override
+    public String getAccountType() {
+        return "Checking";
+    }
+
     @Override
     public String toString() {
         return String.format(
-                "Account Type: Checking%n%s%nOverdraft Limit: $%.2f",
+                "%s%nOverdraft Limit: $%.2f",
                 super.toString(),
                 overdraftLimit
         );

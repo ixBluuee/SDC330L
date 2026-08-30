@@ -2,12 +2,12 @@
 /** ******************************************************************
  * Name: Elvis Melendez
  * Date: 8/29/2026
- * Assignment: SDC330L Course Project - Week 2
+ * Assignment: SDC330L Course Project - Week 3
  *
  * Purpose:
- * This class provides the Week 2 user interface and demonstrates
- * interface implementation and polymorphism in the Bank Account
- * Management System.
+ * This class provides the Week 3 user interface and demonstrates
+ * abstraction, constructor overloading, and access specifiers in the
+ * Bank Account Management System.
  ******************************************************************* */
 
 import java.util.Scanner;
@@ -59,7 +59,7 @@ public class App {
     private static void displayWelcomeMessage() {
         System.out.println(
                 "\n==================================================");
-        System.out.println(" SDC330L Course Project - Week 2");
+        System.out.println(" SDC330L Course Project - Week 3");
         System.out.println(" Bank Account Management System");
         System.out.println(" Created by: Elvis Melendez");
         System.out.println(
@@ -103,12 +103,11 @@ public class App {
                 3.25
         ));
 
+        // Constructor overloading: uses the shorter Customer constructor.
         Customer secondCustomer = new Customer(
                 1002,
                 "James",
-                "Wilson",
-                "james.wilson@email.com",
-                "804-555-0183"
+                "Wilson"
         );
 
         secondCustomer.addAccount(new IRAAccount(
