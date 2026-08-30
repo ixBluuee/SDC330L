@@ -1,13 +1,14 @@
-/********************************************************************
+
+/** ******************************************************************
  * Name: Elvis Melendez
  * Date: 8/29/2026
- * Assignment: SDC330L Course Project - Week 1
+ * Assignment: SDC330L Course Project - Week 2
  *
  * Purpose:
- * This class provides the basic user interface for the Bank Account
- * Management System and displays realistic customer and account
- * information.
- ********************************************************************/
+ * This class provides the Week 2 user interface and demonstrates
+ * interface implementation and polymorphism in the Bank Account
+ * Management System.
+ ******************************************************************* */
 
 import java.util.Scanner;
 
@@ -15,9 +16,14 @@ public class App {
 
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        Customer customer = createSampleCustomer();
-        boolean running = true;
 
+        // Interface polymorphism: a BankManager object is accessed
+        // through a BankOperations reference.
+        BankOperations bankManager = new BankManager();
+
+        addSampleCustomers(bankManager);
+
+        boolean running = true;
         displayWelcomeMessage();
 
         while (running) {
@@ -27,10 +33,14 @@ public class App {
 
             switch (choice) {
                 case "1":
-                    displayCustomerAccounts(customer);
+                    displayAllCustomers(bankManager);
                     break;
 
                 case "2":
+                    findCustomer(bankManager, input);
+                    break;
+
+                case "3":
                     System.out.println(
                             "\nThank you for using the Bank Account "
                             + "Management System.");
@@ -39,7 +49,7 @@ public class App {
 
                 default:
                     System.out.println(
-                            "\nInvalid choice. Please enter 1 or 2.");
+                            "\nInvalid choice. Please enter 1, 2, or 3.");
             }
         }
 
@@ -49,7 +59,7 @@ public class App {
     private static void displayWelcomeMessage() {
         System.out.println(
                 "\n==================================================");
-        System.out.println(" SDC330L Course Project - Week 1");
+        System.out.println(" SDC330L Course Project - Week 2");
         System.out.println(" Bank Account Management System");
         System.out.println(" Created by: Elvis Melendez");
         System.out.println(
@@ -58,19 +68,22 @@ public class App {
         System.out.println(
                 "\nWelcome to the Bank Account Management System.");
         System.out.println(
-                "Select an option from the menu to display sample");
-        System.out.println("account information or exit the application.");
+                "Select an option to display all customers, find an");
+        System.out.println("individual customer, or exit the application.");
     }
 
     private static void displayMenu() {
         System.out.println("\n========== Main Menu ==========");
-        System.out.println("1. Display Customer Accounts");
-        System.out.println("2. Exit");
+        System.out.println("1. Display All Customer Accounts");
+        System.out.println("2. Find Customer by ID");
+        System.out.println("3. Exit");
         System.out.println();
     }
 
-    private static Customer createSampleCustomer() {
-        Customer customer = new Customer(
+    private static void addSampleCustomers(
+            BankOperations bankManager) {
+
+        Customer firstCustomer = new Customer(
                 1001,
                 "Maria",
                 "Rodriguez",
@@ -78,37 +91,86 @@ public class App {
                 "757-555-0148"
         );
 
-        customer.addAccount(new CheckingAccount(
+        firstCustomer.addAccount(new CheckingAccount(
                 "CHK-10001",
                 2450.75,
                 500.00
         ));
 
-        customer.addAccount(new SavingsAccount(
+        firstCustomer.addAccount(new SavingsAccount(
                 "SAV-10001",
                 8750.50,
                 3.25
         ));
 
-        customer.addAccount(new IRAAccount(
-                "IRA-10001",
+        Customer secondCustomer = new Customer(
+                1002,
+                "James",
+                "Wilson",
+                "james.wilson@email.com",
+                "804-555-0183"
+        );
+
+        secondCustomer.addAccount(new IRAAccount(
+                "IRA-10002",
                 18500.00,
                 7000.00
         ));
 
-        return customer;
+        bankManager.addCustomer(firstCustomer);
+        bankManager.addCustomer(secondCustomer);
+    }
+
+    private static void displayAllCustomers(
+            BankOperations bankManager) {
+
+        System.out.println("\n===== All Customer Accounts =====");
+
+        for (Customer customer : bankManager.getAllCustomers()) {
+            displayCustomerAccounts(customer);
+        }
+    }
+
+    private static void findCustomer(
+            BankOperations bankManager, Scanner input) {
+
+        System.out.print("Enter the customer ID: ");
+        String enteredId = input.nextLine();
+
+        try {
+            int customerId = Integer.parseInt(enteredId);
+            Customer customer
+                    = bankManager.findCustomerById(customerId);
+
+            if (customer == null) {
+                System.out.println(
+                        "\nNo customer was found with ID "
+                        + customerId + ".");
+            } else {
+                System.out.println(
+                        "\n===== Customer Found =====");
+                displayCustomerAccounts(customer);
+            }
+
+        } catch (NumberFormatException exception) {
+            System.out.println(
+                    "\nInvalid customer ID. Please enter a number.");
+        }
     }
 
     private static void displayCustomerAccounts(Customer customer) {
-        System.out.println("\n===== Customer Information =====");
+        System.out.println();
         System.out.println(customer);
+        System.out.println("Accounts:");
 
-        System.out.println("\n===== Account Information =====");
-
-        // Composition: the accounts are retrieved from the Customer object.
+        // Polymorphism: Java calls the overridden toString() method
+        // belonging to each account's actual derived class.
         for (Account account : customer.getAccounts()) {
-            System.out.println(account);
             System.out.println();
+            System.out.println(account);
         }
+
+        System.out.println(
+                "--------------------------------------------------");
     }
 }
