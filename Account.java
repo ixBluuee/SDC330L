@@ -1,7 +1,7 @@
 /********************************************************************
  * Name: Elvis Melendez
  * Date: 8/29/2026
- * Assignment: SDC330L Course Project - Week 3
+ * Assignment: SDC330L Course Project - Week 4
  *
  * Purpose:
  * This abstract base class defines the information and functionality
