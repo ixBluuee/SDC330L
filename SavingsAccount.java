@@ -1,7 +1,7 @@
 /********************************************************************
  * Name: Elvis Melendez
  * Date: 8/29/2026
- * Assignment: SDC330L Course Project - Week 3
+ * Assignment: Bank Account Management System - Final Project
  *
  * Purpose:
  * This class represents a savings account and adds an interest rate

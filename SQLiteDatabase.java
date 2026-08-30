@@ -2,7 +2,7 @@
 /** ******************************************************************
  * Name: Elvis Melendez
  * Date: 8/29/2026
- * Assignment: SDC330L Course Project - Week 4
+ * Assignment: Bank Account Management System - Final Project
  *
  * Purpose:
  * This class connects to the SQLite banking database and creates the

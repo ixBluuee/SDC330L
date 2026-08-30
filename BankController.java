@@ -1,7 +1,7 @@
 /********************************************************************
  * Name: Elvis Melendez
  * Date: 8/29/2026
- * Assignment: SDC330L Course Project - Week 4
+ * Assignment: Bank Account Management System - Final Project
  *
  * Purpose:
  * This class controls the console interface for the Bank Account
@@ -78,7 +78,6 @@ public class BankController {
     private void displayWelcomeMessage() {
         System.out.println(
                 "\n==================================================");
-        System.out.println(" SDC330L Course Project - Week 4");
         System.out.println(" Bank Account Management System");
         System.out.println(" Created by: Elvis Melendez");
         System.out.println(
