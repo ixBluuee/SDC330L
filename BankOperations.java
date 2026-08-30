@@ -1,7 +1,7 @@
 /********************************************************************
  * Name: Elvis Melendez
  * Date: 8/29/2026
- * Assignment: SDC330L Course Project - Week 2
+ * Assignment: SDC330L Course Project - Week 3
  *
  * Purpose:
  * This interface defines the basic customer operations provided by

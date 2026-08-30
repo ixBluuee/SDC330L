@@ -1,14 +1,13 @@
 /********************************************************************
  * Name: Elvis Melendez
  * Date: 8/29/2026
- * Assignment: SDC330L Course Project - Week 1
+ * Assignment: SDC330L Course Project - Week 3
  *
  * Purpose:
  * This class represents a savings account and adds an interest rate
- * to the information inherited from the Account class.
+ * to the shared Account functionality.
  ********************************************************************/
 
-// Inheritance: SavingsAccount is a derived class of Account.
 public class SavingsAccount extends Account {
 
     private double interestRate;
@@ -16,6 +15,7 @@ public class SavingsAccount extends Account {
     public SavingsAccount(String accountNumber, double balance,
             double interestRate) {
 
+        // Constructor chaining: initializes inherited account data.
         super(accountNumber, balance);
         this.interestRate = interestRate;
     }
@@ -24,10 +24,16 @@ public class SavingsAccount extends Account {
         return interestRate;
     }
 
+    // Abstraction: provides the account type required by Account.
+    @Override
+    public String getAccountType() {
+        return "Savings";
+    }
+
     @Override
     public String toString() {
         return String.format(
-                "Account Type: Savings%n%s%nInterest Rate: %.2f%%",
+                "%s%nInterest Rate: %.2f%%",
                 super.toString(),
                 interestRate
         );

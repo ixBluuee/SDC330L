@@ -1,21 +1,21 @@
 /********************************************************************
  * Name: Elvis Melendez
  * Date: 8/29/2026
- * Assignment: SDC330L Course Project - Week 1
+ * Assignment: SDC330L Course Project - Week 3
  *
  * Purpose:
  * This class represents an IRA account and adds an annual
- * contribution limit to the information inherited from Account.
+ * contribution limit to the shared Account functionality.
  ********************************************************************/
 
-// Inheritance: IRAAccount is a derived class of Account.
 public class IRAAccount extends Account {
 
-    private double annualContributionLimit;
+    private final double annualContributionLimit;
 
     public IRAAccount(String accountNumber, double balance,
             double annualContributionLimit) {
 
+        // Constructor chaining: initializes inherited account data.
         super(accountNumber, balance);
         this.annualContributionLimit = annualContributionLimit;
     }
@@ -24,10 +24,16 @@ public class IRAAccount extends Account {
         return annualContributionLimit;
     }
 
+    // Abstraction: provides the account type required by Account.
+    @Override
+    public String getAccountType() {
+        return "IRA";
+    }
+
     @Override
     public String toString() {
         return String.format(
-                "Account Type: IRA%n%s%nAnnual Contribution Limit: $%.2f",
+                "%s%nAnnual Contribution Limit: $%.2f",
                 super.toString(),
                 annualContributionLimit
         );
